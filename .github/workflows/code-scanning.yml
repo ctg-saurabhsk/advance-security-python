@@ -26,7 +26,13 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt  # Adjust based on your project structure
 
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python-3.8@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       - name: Snyk Scan
         run: npx snyk test --org=saurabhkothari5251 --token=${{ secrets.SNYK_TOKEN }}
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
