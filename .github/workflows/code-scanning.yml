@@ -1,0 +1,27 @@
+name: Snyk Code Scanning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Choose the desired Python version
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt  # Adjust based on your project structure
+
+      - name: Snyk Scan
+        run: npx snyk test --org=<Your_Snyk_Organization> --token=${{ secrets.SNYK_TOKEN }}
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
