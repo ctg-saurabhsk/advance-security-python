@@ -22,6 +22,6 @@ jobs:
         run: pip install -r requirements.txt  # Adjust based on your project structure
 
       - name: Snyk Scan
-        run: npx snyk test --org=<Your_Snyk_Organization> --token=${{ secrets.SNYK_TOKEN }}
+        run: npx snyk test --org=saurabhkothari5251 --token=${{ secrets.SNYK_TOKEN }}
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
